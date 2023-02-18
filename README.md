@@ -11,3 +11,9 @@
 * 14:45: Read about the transition from .NET MVC to .NET MAUI
 * 15:00: Deciding on whether doing a Mobile APP as an MVP first or a standard webapp
 * 16:30: Filled Out capstone proposal
+
+
+#### Saturday, 02/18
+
+* 02:30 Initialize WebApi
+* 03:14 Designing ERD
