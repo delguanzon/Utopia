@@ -1,8 +1,8 @@
-### Name of Student: Yodel Guanzon
+## Name of Student: Yodel Guanzon
 
 ### Name of Project: Utopia
 
-### Project's Purpose or Goal: 
+### Project's Purpose or Goal:
 
 The goal of this project is to create a culture of kindness and generosity, where people are encouraged to look for opportunities to help others and make a positive impact on their community. By promoting acts of kindness, the project can help foster a more compassionate and supportive environment for all.
 
@@ -15,7 +15,7 @@ This quote emphasizes that every act of kindness, no matter how small, can have 
 * A taskboard for help tickets. Users can pick-up nearby help requests and also post help requests.
 * GIS for pinning location of help requests
 
-#### What tools, frameworks, libraries, APIs, modules and/or other resources (whatever is specific to your track, and your language) will you use to create this MVP? List them all here. Be specific.
+#### What tools, frameworks, libraries, APIs, modules and/or other resources (whatever is specific to your track, and your language) will you use to create this MVP? List them all here. Be specific
 
 * .Net WebApi
 * React / Next JS
