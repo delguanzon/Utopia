@@ -18,4 +18,5 @@
 * 02:30 Initialize WebApi
 * 03:14 Designing ERD
 * 16:09 Brainstorming on User Stories
-* 17:19 Watched a video about React Native https://www.youtube.com/watch?v=0-S5a0eXPoc
+* 17:19 Watching a video about React Native https://www.youtube.com/watch?v=0-S5a0eXPoc
+* 15:49 ^
