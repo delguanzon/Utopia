@@ -1,3 +1,18 @@
+
+# Utopia
+
+> "Remember there’s no such thing as a small act of kindness. Every act creates a ripple with no logical end." - Scott Adams
+
+## Project Description
+
+This is a capstone project created during our time at Epicodus. This projects aims to create a culture of kindness and generosity, where people are encouraged to look for opportunities to help others and make a positive impact on their community. By promoting acts of kindness, the project can help foster a more compassionate and supportive environment for all.
+
+## App Features
+
+* Users will be able to post help requests
+* Users can grab nearby help requests
+* Help Requests are pinned on the map
+
 ### Research & Planning Log
 #### Friday, 02/17
 
@@ -20,3 +35,7 @@
 * 16:09 Brainstorming on User Stories
 * 17:19 Watching a video about React Native https://www.youtube.com/watch?v=0-S5a0eXPoc
 * 17:49 ^
+
+#### Sunday, 02/19
+
+* 22:30 Revisiting project details
