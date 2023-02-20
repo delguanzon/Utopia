@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using UtopiaApi.Models;
 
 namespace UtopiaApi.Models
 {
@@ -15,5 +16,7 @@ namespace UtopiaApi.Models
         }
 
         public DbSet<User> Users { get; set; }
+
+        public DbSet<UtopiaApi.Models.Request> Request { get; set; }
     }
 }
