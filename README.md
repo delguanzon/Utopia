@@ -39,3 +39,9 @@ This is a capstone project created during our time at Epicodus. This projects ai
 #### Sunday, 02/19
 
 * 22:30 Revisiting project details
+* 23:48 Added Project Description on Readme, Project Research
+
+#### Monday, 02/20
+
+* 01:04 Add API Boiler Plate
+* 02:04 Research About Identity and JWT tokens
