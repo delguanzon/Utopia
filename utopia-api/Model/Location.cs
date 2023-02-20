@@ -10,4 +10,6 @@ public class Location
   public string ZipCode { get; set; }
   public long Lattitude { get; set; }
   public long Longitude { get; set; }
+
+  
 }
