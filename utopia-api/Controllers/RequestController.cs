@@ -22,7 +22,7 @@ namespace utopia_api.Controllers
 
         // GET: api/Request
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Request>>> GetRequest()
+        public async Task<ActionResult<IEnumerable<Request>>> GetRequests()
         {
             return await _context.Requests.ToListAsync();
         }

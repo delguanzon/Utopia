@@ -8,4 +8,5 @@ namespace UtopiaApi.Models;
         public string LastName { get; set; }
         public string contactNumber { get; set; }
         public User User { get; set; }
+        public List<Request> Requests { get; set; }
     }

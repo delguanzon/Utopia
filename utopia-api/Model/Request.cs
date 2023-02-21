@@ -6,4 +6,5 @@ public class Request
   public string RequestStatus { get; set; }
   public string RequestDescription { get; set; }
   public Location Location { get; set; }
+  public User User { get; set; }
 }
