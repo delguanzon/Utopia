@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +15,12 @@ namespace utopia_api.Controllers
     public class UserController : ControllerBase
     {
         private readonly UtopiaDbContext _context;
+        private readonly IMapper _mapper;
 
-        public UserController(UtopiaDbContext context)
+        public UserController(UtopiaDbContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/User
@@ -29,16 +32,17 @@ namespace utopia_api.Controllers
 
         // GET: api/User/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<UserDto>> GetUser(int id)
         {
             var user = await _context.Users.FindAsync(id);
+            var results = _mapper.Map<UserDto>(user);
 
             if (user == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return Ok(results);
         }
 
         // PUT: api/User/5
