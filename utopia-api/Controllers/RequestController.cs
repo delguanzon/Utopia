@@ -24,14 +24,14 @@ namespace utopia_api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Request>>> GetRequest()
         {
-            return await _context.Request.ToListAsync();
+            return await _context.Requests.ToListAsync();
         }
 
         // GET: api/Request/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Request>> GetRequest(int id)
         {
-            var request = await _context.Request.FindAsync(id);
+            var request = await _context.Requests.FindAsync(id);
 
             if (request == null)
             {
@@ -77,7 +77,7 @@ namespace utopia_api.Controllers
         [HttpPost]
         public async Task<ActionResult<Request>> PostRequest(Request request)
         {
-            _context.Request.Add(request);
+            _context.Requests.Add(request);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetRequest", new { id = request.RequestId }, request);
@@ -87,13 +87,13 @@ namespace utopia_api.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRequest(int id)
         {
-            var request = await _context.Request.FindAsync(id);
+            var request = await _context.Requests.FindAsync(id);
             if (request == null)
             {
                 return NotFound();
             }
 
-            _context.Request.Remove(request);
+            _context.Requests.Remove(request);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -101,7 +101,7 @@ namespace utopia_api.Controllers
 
         private bool RequestExists(int id)
         {
-            return _context.Request.Any(e => e.RequestId == id);
+            return _context.Requests.Any(e => e.RequestId == id);
         }
     }
 }
