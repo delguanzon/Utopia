@@ -45,3 +45,7 @@ This is a capstone project created during our time at Epicodus. This projects ai
 
 * 01:04 Add API Boiler Plate
 * 02:04 Research About Identity and JWT tokens
+
+#### Friday, 02/24
+
+* 09:31 Started Mobile App Prototyping
