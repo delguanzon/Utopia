@@ -52,4 +52,6 @@ This is a capstone project created during our time at Epicodus. This projects ai
 
 #### Sunday, 02/26
 
-* Updating Webapi
+* 21:30 Updating Webapi
+* 23:05 Revisitting ERD due to possible object cycle errors
+
