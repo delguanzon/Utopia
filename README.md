@@ -49,3 +49,7 @@ This is a capstone project created during our time at Epicodus. This projects ai
 #### Friday, 02/24
 
 * 09:31 Started Mobile App Prototyping
+
+#### Sunday, 02/26
+
+* Updating Webapi
