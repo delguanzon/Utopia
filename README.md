@@ -62,3 +62,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 * 00:48 Stumbled on Blazor and Minimal APIs
 * 01:21 Tried minimal API
 * 02:28 Researching about dependency injections and .net frameworks for minimal APIs
+* 02:58 Revisitting ERD due to possible object cycle errors
