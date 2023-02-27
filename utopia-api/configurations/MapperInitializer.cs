@@ -7,7 +7,7 @@ public class MapperInitializer : Profile
     public MapperInitializer()
     {
         CreateMap<User, UserDto>().ReverseMap();
-        // CreateMap<Request, RequestDto>();
+        CreateMap<Request, RequestDto>().ReverseMap();
         // CreateMap<RequestDto, Request>();
     }
 }

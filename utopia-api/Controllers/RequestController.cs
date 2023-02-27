@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,17 +15,25 @@ namespace utopia_api.Controllers
     public class RequestController : ControllerBase
     {
         private readonly UtopiaDbContext _context;
+        private readonly IMapper _mapper;
 
-        public RequestController(UtopiaDbContext context)
+        public RequestController(IMapper mapper, UtopiaDbContext context)
         {
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Request
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Request>>> GetRequests()
+        public async Task<ActionResult<IEnumerable<RequestDto>>> GetRequests()
         {
-            return await _context.Requests.ToListAsync();
+            var requests = await _context.Requests.ToListAsync();
+            List<RequestDto> results = new List<RequestDto>();
+            foreach (var request in requests)
+            {
+                results.Add(_mapper.Map<RequestDto>(request));
+            }
+            return results;
         }
 
         // GET: api/Request/5
