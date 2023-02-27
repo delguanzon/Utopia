@@ -54,4 +54,9 @@ This is a capstone project created during our time at Epicodus. This projects ai
 
 * 21:30 Updating Webapi
 * 23:05 Revisitting ERD due to possible object cycle errors
+* 23:35 Studying AutoMapper
+
+#### Monday, 02/27
+
+* Researching performance between Node and .Net
 
