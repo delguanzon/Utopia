@@ -65,3 +65,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 * 02:58 Revisitting ERD due to possible object cycle errors
 * 03:34 Researching Tailwind for Blazor https://www.youtube.com/watch?v=GKbTgovP-VU
 * 04:33 React Native or .Net Maui with Blazor?
+* 05:32 Containers https://www.youtube.com/watch?v=yLNMMdyak6k
