@@ -59,4 +59,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 #### Monday, 02/27
 
 * Researching performance between Node and .Net
-
+* 00:48 Stumbled on Blazor and Minimal APIs
