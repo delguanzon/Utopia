@@ -63,3 +63,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 * 01:21 Tried minimal API
 * 02:28 Researching about dependency injections and .net frameworks for minimal APIs
 * 02:58 Revisitting ERD due to possible object cycle errors
+* 03:34 Researching Tailwind for Blazor https://www.youtube.com/watch?v=GKbTgovP-VU
