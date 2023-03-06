@@ -71,3 +71,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 
 * 11:16 Looking into Firebase
 * 12:12 Looking into MongoDB
+* 01:12 Pros and Cons of NoSQL DB vs SQL RDB
