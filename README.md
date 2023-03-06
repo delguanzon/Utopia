@@ -70,3 +70,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 #### Monday 03/06
 
 * 11:16 Looking into Firebase
+* 12:12 Looking into MongoDB
