@@ -18,6 +18,7 @@ const HomeScreen = () => {
         <Text className="text-white font-bold text-6xl "> ᜌᜓᜆᜓᜉ᜔ᜌ </Text>
         <Text className="text-white font-bold text-6xl "> u-to-pia </Text>
       </View>
+      <View></View>
     </SafeAreaView>
   );
 };
