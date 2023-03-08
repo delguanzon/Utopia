@@ -7,17 +7,26 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, db } from './firebaseConfig';
 import SplashScreen from './screens/SplashScreen';
+import HomeScreen from './screens/HomeScreen';
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  const [user] = useAuthState(auth);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name="Splash"
-          component={SplashScreen}
-        />
+        {user ? (
+          <Stack.Screen
+            name="Splash"
+            component={SplashScreen}
+          />
+        ) : (
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
