@@ -13,8 +13,11 @@ const HomeScreen = () => {
   }, []);
 
   return (
-    <SafeAreaView>
-      <Text className="text-red-500">Utopia</Text>
+    <SafeAreaView className="bg-emerald-500 flex-1 justify-center  items-center">
+      <View>
+        <Text className="text-white font-bold text-6xl "> ᜌᜓᜆᜓᜉ᜔ᜌ </Text>
+        <Text className="text-white font-bold text-6xl "> u-to-pia </Text>
+      </View>
     </SafeAreaView>
   );
 };
