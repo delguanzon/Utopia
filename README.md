@@ -78,3 +78,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 * 01:12 Pros and Cons of NoSQL DB vs SQL RDB
 * 02:34 Setting up MongoDb
 * 03:41 FOMO Invite Only Research (02 days:	16 hrs left to do everything xD)
+
