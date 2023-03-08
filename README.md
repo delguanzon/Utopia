@@ -82,3 +82,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 #### Monday 03/08
 
 * 13:46 Add Collections in Firestore
+* 13:56 Enabled SMS Authentication
