@@ -13,6 +13,10 @@ This is a capstone project created during our time at Epicodus. This projects ai
 * Users can grab nearby help requests
 * Help Requests are pinned on the map
 
+## Planned Components Table
+ <img src=".\readme\img\components-table.png">
+
+
 ### Research & Planning Log
 #### Friday, 02/17
 
@@ -73,4 +77,4 @@ This is a capstone project created during our time at Epicodus. This projects ai
 * 12:12 Looking into MongoDB
 * 01:12 Pros and Cons of NoSQL DB vs SQL RDB
 * 02:34 Setting up MongoDb
-* 03:41 FOMO Invite Only Research (02 days	:	16 hrs left to do everything xD)
+* 03:41 FOMO Invite Only Research (02 days:	16 hrs left to do everything xD)
