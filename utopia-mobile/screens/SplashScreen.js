@@ -2,10 +2,16 @@ import { View, Text, TextInput, Button, Alert, Pressable } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { db } from '../firebaseConfig';
+import { doc, getDoc } from 'firebase/firestore';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
-  const [phoneNumber, setPhoneNumber] = useState();
+  const [displayNumber, setDisplayNumber] = useState('');
+  const [invited, setInvited] = useState(false);
+  //const [phoneNumber, setPhoneNumber] = useState();
+
+  const phoneNumber = `+1${displayNumber}`;
 
   useEffect(() => {
     navigation.setOptions({
@@ -13,18 +19,36 @@ const SplashScreen = () => {
     });
   }, []);
 
-  const phoneFormat = (phoneNumber) => {
-    var match = phoneNumber.match(/(\d{3})(\d{3})(\d{4})$/);
+  useEffect(() => {
+    if (phoneNumber.length === 12) {
+      // const docRef = doc(db, 'cities', 'SF');
+      getDoc(doc(db, 'invites', phoneNumber)).then((docSnap) => {
+        if (docSnap.exists()) {
+          console.log('Document data:', docSnap.data());
+        } else {
+          console.log('No such document!');
+        }
+      });
 
+      // const ref = db.collection('invites').doc(phoneNumber);
+      // ref.get().then(({ exists }) => {
+      //   setInvited(exists);
+      // });
+    } else {
+      setInvited(false);
+    }
+  }, [phoneNumber]);
+
+  const phoneFormat = (displayNumber) => {
+    var match = displayNumber.match(/(\d{3})(\d{3})(\d{4})$/);
+    setDisplayNumber(displayNumber);
     if (match) {
       let number = ['(', match[1], ') ', match[2], '-', match[3]].join('');
-
-      setPhoneNumber(number);
-
+      setDisplayNumber(number);
       return;
     }
-
-    setPhoneNumber(phoneNumber);
+    setDisplayNumber(displayNumber);
+    console.log(phoneNumber);
   };
 
   return (
@@ -39,18 +63,20 @@ const SplashScreen = () => {
           className="text-white text-lg"
           keyboardType={'number-pad'}
           placeholder="(604) 333-3333"
-          maxLength={14}
+          maxLength={10}
           placeholderTextColor="white"
-          onChangeText={(phoneNumber) => phoneFormat(phoneNumber)}
-          value={phoneNumber}
+          onChangeText={(displayNumber) => setDisplayNumber(displayNumber)}
+          value={displayNumber}
         />
       </View>
+
       <Pressable
         className="bg-white w-28 h-12 rounded-full justify-center items-center"
         onPress={() => Alert.alert('Left button pressed')}
       >
         <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
       </Pressable>
+      {invited ? <Text>Success</Text> : <Text>Fail</Text>}
     </SafeAreaView>
   );
 };

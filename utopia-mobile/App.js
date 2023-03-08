@@ -23,8 +23,8 @@ export default function App() {
           />
         ) : (
           <Stack.Screen
-            name="Home"
-            component={HomeScreen}
+            name="Splash"
+            component={SplashScreen}
           />
         )}
       </Stack.Navigator>
