@@ -1,7 +1,14 @@
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
+
 import 'firebase/firestore';
 import 'firebase/auth';
-import { initializeApp } from 'firebase/app';
 
 // Optionally import the services that you want to use
 // import {...} from 'firebase/auth';
@@ -20,15 +27,17 @@ const firebaseConfig = {
   appId: '1:971460527423:web:1ad0aaf8188a30c40fbf8a',
 };
 
-let app;
+const app = initializeApp(firebaseConfig);
 
-if (firebase.apps.length === 0) {
-  app = firebase.initializeApp(firebaseConfig);
-} else {
-  app = firebase.app();
-}
+// let app;
 
-const db = app.firestore();
-const auth = firebase.auth();
+// if (firebase.apps.length === 0) {
+//   app = initializeApp(firebaseConfig);
+// } else {
+//   app = firebase.app();
+// }
 
-export { db, auth };
+const db = getFirestore(app);
+const auth = getAuth(app);
+
+// export { db, auth };

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const HomeScreen = () => {
+const SplashScreen = () => {
   const navigation = useNavigation();
   const [phoneNumber, setPhoneNumber] = useState();
 
@@ -55,4 +55,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default SplashScreen;
