@@ -2,7 +2,7 @@ import { View, Text, TextInput, Button, Alert, Pressable } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { db } from '../firebaseConfig';
+import { auth, db } from '../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 
 const SplashScreen = ({ navigation }) => {
@@ -11,6 +11,13 @@ const SplashScreen = ({ navigation }) => {
   //const [phoneNumber, setPhoneNumber] = useState();
 
   const phoneNumber = `+1${displayNumber}`;
+
+  
+  const [reCaptcha, setRecaptcha] = useState(null);
+
+  useEffect(() => {
+  }
+
 
   useEffect(() => {
     navigation.setOptions({
@@ -32,17 +39,11 @@ const SplashScreen = ({ navigation }) => {
     }
   }, [phoneNumber]);
 
-  const phoneFormat = (displayNumber) => {
-    var match = displayNumber.match(/(\d{3})(\d{3})(\d{4})$/);
-    setDisplayNumber(displayNumber);
-    if (match) {
-      let number = ['(', match[1], ') ', match[2], '-', match[3]].join('');
-      setDisplayNumber(number);
-      return;
-    }
-    setDisplayNumber(displayNumber);
-    //console.log(phoneNumber);
-  };
+
+  //SignInUsingPhone
+  const signInPhoneNumber = async () => { {
+    setConfirmationResult( await auth.signInWithPhoneNumber(phoneNumber));
+  }
 
   return (
     <SafeAreaView className="bg-emerald-500 flex-1 justify-center  items-center">
