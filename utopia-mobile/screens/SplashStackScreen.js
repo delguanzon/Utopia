@@ -1,4 +1,13 @@
-import { View, Text, TextInput, Button, Alert, Pressable } from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  Button,
+  Alert,
+  Pressable,
+  TouchableOpacity,
+  StyleSheet,
+} from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -14,7 +23,6 @@ import {
   FirebaseRecaptchaVerifierModal,
   FirebaseRecaptchaBanner,
 } from 'expo-firebase-recaptcha';
-
 const app = getApp();
 
 const SplashScreen = ({ navigation }) => {
@@ -85,44 +93,100 @@ const SplashScreen = ({ navigation }) => {
         attemptInvisibleVerification
       />
       <View>
-        <Text className="text-white font-bold text-6xl "> ᜌᜓᜆᜓᜉ᜔ᜌ </Text>
-        {/* <Text className="text-white font-bold text-6xl "> u-to-pia </Text> */}
-      </View>
-      <View className="border-2 border-white rounded-lg w-80 h-12 text-white justify-center items-center  flex-row my-7">
-        {/* <Text className="text-white text-lg">{areaCode}</Text> */}
-        <TextInput
-          className="text-white text-lg text-center"
-          keyboardType={'number-pad'}
-          placeholder={
-            !verificationId
-              ? `Enter 10 Digit Phone Number`
-              : `Enter 6 Digit Code`
-          }
-          maxLength={10}
-          placeholderTextColor="white"
-          onChangeText={(displayNumber) => setDisplayNumber(displayNumber)}
-          value={displayNumber}
-        />
+        {!verificationId ? (
+          <Text className="text-white font-bold text-6xl "> ᜌᜓᜆᜓᜉ᜔ᜌ </Text>
+        ) : (
+          <Text className="text-white font-bold text-6xl "> u-to-pia </Text>
+        )}
+
+        {/* */}
       </View>
 
-      <Button
-        title="Send Verification Code"
-        disabled={!phoneNumber}
-        onPress={() => sendVerification()}
-      />
+      {!verificationId ? (
+        <View className="justify-center  items-center">
+          <View className="border-2 border-white rounded-lg w-80 h-12 text-white justify-center items-center  flex-row my-7">
+            {/* <Text className="text-white text-lg">{areaCode}</Text> */}
+            <TextInput
+              className="text-white text-lg text-center"
+              keyboardType={'number-pad'}
+              placeholder="Enter 10 Digit Phone Number"
+              maxLength={10}
+              placeholderTextColor="white"
+              onChangeText={(displayNumber) => setDisplayNumber(displayNumber)}
+              value={displayNumber}
+            />
+          </View>
+          <Pressable
+            className={
+              !invited
+                ? 'invisible'
+                : 'bg-white w-28 h-12 rounded-full justify-center items-center '
+            }
+            onPress={() => sendVerification()}
+          >
+            <Text className="text-emerald-500 text-lg font-bold">
+              Send Code
+            </Text>
+          </Pressable>
+        </View>
+      ) : (
+        <View className="justify-center  items-center">
+          <View className="border-2 border-white rounded-lg w-80 h-12 text-white justify-center items-center  flex-row my-7">
+            {/* <Text className="text-white text-lg">{areaCode}</Text> */}
+            <TextInput
+              className="text-white text-lg text-center"
+              keyboardType={'number-pad'}
+              placeholder="Enter 6 Digit Code"
+              maxLength={6}
+              placeholderTextColor="white"
+              onChangeText={(code) => setVerificationCode(code)}
+              value={verificationCode}
+            />
+          </View>
+          <Pressable
+            className={
+              !invited
+                ? 'invisible'
+                : 'bg-white w-28 h-12 rounded-full justify-center items-center '
+            }
+            onPress={async () => {
+              try {
+                const credential = PhoneAuthProvider.credential(
+                  verificationId,
+                  verificationCode
+                );
+                await signInWithCredential(auth, credential);
+                showMessage({ text: 'Phone authentication successful 👍' });
+              } catch (err) {
+                showMessage({ text: `Error: ${err.message}`, color: 'red' });
+              }
+            }}
+          >
+            <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
+          </Pressable>
+        </View>
+      )}
 
-      <Pressable
-        className={
-          !invited
-            ? 'invisible'
-            : 'bg-white w-28 h-12 rounded-full justify-center items-center '
-        }
-        onPress={() => navigation.navigate('Main')}
-      >
-        <Text className="text-emerald-500 text-lg font-bold">
-          {verificationId ? `Sign In` : `Confirm`}
-        </Text>
-      </Pressable>
+      {message ? (
+        <TouchableOpacity
+          style={[
+            StyleSheet.absoluteFill,
+            { backgroundColor: 0xffffffee, justifyContent: 'center' },
+          ]}
+          onPress={() => showMessage(undefined)}
+        >
+          <Text
+            style={{
+              color: message.color || 'blue',
+              fontSize: 17,
+              textAlign: 'center',
+              margin: 20,
+            }}
+          >
+            {message.text}
+          </Text>
+        </TouchableOpacity>
+      ) : undefined}
     </SafeAreaView>
   );
 };

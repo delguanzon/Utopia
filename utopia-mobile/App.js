@@ -29,6 +29,10 @@ export default function App() {
           name="Main"
           component={MainContainer}
         />
+        <Stack.Screen
+          name="Confirm"
+          component={ConfirmScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
