@@ -4,8 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from '@rneui/themed';
 
 // Screens
-import HomeScreen from './HomeScreen';
-import RegisterScreen from './RegisterScreen';
+import HomeScreen from './HomeStackScreen';
+import RegisterScreen from './RegisterStackScreen';
 // import DetailsScreen from './screens/DetailsScreen';
 // import SettingsScreen from './screens/SettingsScreen';
 
