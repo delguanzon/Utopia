@@ -17,11 +17,11 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Splash"
           component={SplashStackScreen}
         />
-        <Stack.Screen
+        {/*<Stack.Screen
           name="Register"
           component={RegisterScreen}
         /> */}

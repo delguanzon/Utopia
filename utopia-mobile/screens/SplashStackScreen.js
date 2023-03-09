@@ -2,8 +2,20 @@ import { View, Text, TextInput, Button, Alert, Pressable } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { auth, db } from '../firebaseConfig';
+import { db, auth } from '../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
+import { getApp } from 'firebase/app';
+import {
+  getAuth,
+  PhoneAuthProvider,
+  signInWithCredential,
+} from 'firebase/auth';
+import {
+  FirebaseRecaptchaVerifierModal,
+  FirebaseRecaptchaBanner,
+} from 'expo-firebase-recaptcha';
+
+const app = getApp();
 
 const SplashScreen = ({ navigation }) => {
   const [displayNumber, setDisplayNumber] = useState('');
@@ -11,13 +23,6 @@ const SplashScreen = ({ navigation }) => {
   //const [phoneNumber, setPhoneNumber] = useState();
 
   const phoneNumber = `+1${displayNumber}`;
-
-  
-  const [reCaptcha, setRecaptcha] = useState(null);
-
-  useEffect(() => {
-  }
-
 
   useEffect(() => {
     navigation.setOptions({
@@ -39,14 +44,46 @@ const SplashScreen = ({ navigation }) => {
     }
   }, [phoneNumber]);
 
+  //SignIn Variables
 
-  //SignInUsingPhone
-  const signInPhoneNumber = async () => { {
-    setConfirmationResult( await auth.signInWithPhoneNumber(phoneNumber));
-  }
+  const recaptchaVerifier = React.useRef(null);
+  const [verificationId, setVerificationId] = React.useState();
+  const [verificationCode, setVerificationCode] = React.useState();
+  const [messageSent, setMessageSent] = React.useState(false);
+
+  const firebaseConfig = app ? app.options : undefined;
+  const [message, showMessage] = React.useState();
+  const attemptInvisibleVerification = true;
+
+  //SignIn Functions
+
+  const sendVerification = async () => {
+    // The FirebaseRecaptchaVerifierModal ref implements the
+    // FirebaseAuthApplicationVerifier interface and can be
+    // passed directly to `verifyPhoneNumber`.
+    try {
+      const phoneProvider = new PhoneAuthProvider(auth);
+      console.log(phoneNumber);
+      const verificationId = await phoneProvider.verifyPhoneNumber(
+        phoneNumber,
+        recaptchaVerifier.current
+      );
+      setVerificationId(verificationId);
+      showMessage({
+        text: 'Verification code has been sent to your phone.',
+      });
+    } catch (err) {
+      showMessage({ text: `Error: ${err.message}`, color: 'red' });
+    }
+  };
 
   return (
     <SafeAreaView className="bg-emerald-500 flex-1 justify-center  items-center">
+      <FirebaseRecaptchaVerifierModal
+        ref={recaptchaVerifier}
+        firebaseConfig={firebaseConfig}
+        attemptInvisibleVerification
+      />
       <View>
         <Text className="text-white font-bold text-6xl "> ᜌᜓᜆᜓᜉ᜔ᜌ </Text>
         {/* <Text className="text-white font-bold text-6xl "> u-to-pia </Text> */}
@@ -56,13 +93,23 @@ const SplashScreen = ({ navigation }) => {
         <TextInput
           className="text-white text-lg text-center"
           keyboardType={'number-pad'}
-          placeholder="Enter 10 Digit Phone Number"
+          placeholder={
+            !verificationId
+              ? `Enter 10 Digit Phone Number`
+              : `Enter 6 Digit Code`
+          }
           maxLength={10}
           placeholderTextColor="white"
           onChangeText={(displayNumber) => setDisplayNumber(displayNumber)}
           value={displayNumber}
         />
       </View>
+
+      <Button
+        title="Send Verification Code"
+        disabled={!phoneNumber}
+        onPress={() => sendVerification()}
+      />
 
       <Pressable
         className={
@@ -72,7 +119,9 @@ const SplashScreen = ({ navigation }) => {
         }
         onPress={() => navigation.navigate('Main')}
       >
-        <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
+        <Text className="text-emerald-500 text-lg font-bold">
+          {verificationId ? `Sign In` : `Confirm`}
+        </Text>
       </Pressable>
     </SafeAreaView>
   );

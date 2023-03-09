@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useFocusEffect } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from '@rneui/themed';
 
@@ -8,6 +8,7 @@ import HomeTabScreen from './tabs/HomeTabScreen';
 import ListTabScreen from './tabs/ListTabScreen';
 import MessageTabScreen from './tabs/MessageTabScreen';
 import ProfileTabScreen from './tabs/ProfileTabScreen';
+import { BackHandler } from 'react-native';
 // import DetailsScreen from './screens/DetailsScreen';
 // import SettingsScreen from './screens/SettingsScreen';
 
@@ -20,9 +21,21 @@ const profileName = 'Profile';
 const Tab = createBottomTabNavigator();
 
 const MainContainer = ({ navigation }) => {
+  useFocusEffect(
+    React.useCallback(() => {
+      const onBackPress = () => {
+        return true;
+      };
+      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+
+      return () =>
+        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+    }, [])
+  );
   React.useEffect(() => {
     navigation.setOptions({
       headerShown: false,
+      backBehavior: 'none',
     });
   }, []);
   return (
