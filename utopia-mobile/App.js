@@ -8,6 +8,8 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, db } from './firebaseConfig';
 import SplashScreen from './screens/SplashScreen';
 import HomeScreen from './screens/HomeScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import MainContainer from './screens/MainContainer';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +29,14 @@ export default function App() {
             component={SplashScreen}
           />
         )}
+        <Stack.Screen
+          name="Register"
+          component={RegisterScreen}
+        />
+        <Stack.Screen
+          name="Main"
+          component={MainContainer}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

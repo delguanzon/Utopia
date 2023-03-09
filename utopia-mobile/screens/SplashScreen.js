@@ -5,8 +5,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { db } from '../firebaseConfig';
 import { doc, getDoc } from 'firebase/firestore';
 
-const SplashScreen = () => {
-  const navigation = useNavigation();
+const SplashScreen = ({ navigation }) => {
   const [displayNumber, setDisplayNumber] = useState('');
   const [invited, setInvited] = useState(null);
   //const [phoneNumber, setPhoneNumber] = useState();
@@ -70,7 +69,7 @@ const SplashScreen = () => {
             ? 'invisible'
             : 'bg-white w-28 h-12 rounded-full justify-center items-center '
         }
-        onPress={() => Alert.alert('Left button pressed')}
+        onPress={() => navigation.navigate('Main')}
       >
         <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
       </Pressable>
