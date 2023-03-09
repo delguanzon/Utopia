@@ -4,19 +4,27 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Icon } from '@rneui/themed';
 
 // Screens
-import HomeScreen from './HomeStackScreen';
-import RegisterScreen from './RegisterStackScreen';
+import HomeTabScreen from './tabs/HomeTabScreen';
+import ListTabScreen from './tabs/ListTabScreen';
+import MessageTabScreen from './tabs/MessageTabScreen';
+import ProfileTabScreen from './tabs/ProfileTabScreen';
 // import DetailsScreen from './screens/DetailsScreen';
 // import SettingsScreen from './screens/SettingsScreen';
 
 //Screen names
 const homeName = 'Home';
-const registerName = 'Register';
-const settingsName = 'Settings';
+const listName = 'List';
+const messagesName = 'Messages';
+const profileName = 'Profile';
 
 const Tab = createBottomTabNavigator();
 
-function MainContainer() {
+const MainContainer = ({ navigation }) => {
+  React.useEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
   return (
     <Tab.Navigator
       initialRouteName={homeName}
@@ -27,10 +35,12 @@ function MainContainer() {
 
           if (rn === homeName) {
             iconName = focused ? 'home' : 'home-outline';
-          } else if (rn === registerName) {
+          } else if (rn === listName) {
             iconName = focused ? 'list' : 'list-outline';
-          } else if (rn === settingsName) {
-            iconName = focused ? 'settings' : 'settings-outline';
+          } else if (rn === messagesName) {
+            iconName = focused ? 'mail' : 'mail-outline';
+          } else if (rn === profileName) {
+            iconName = focused ? 'person-circle' : 'person-circle-outline';
           }
 
           // You can return any component that you like here!
@@ -43,24 +53,30 @@ function MainContainer() {
             />
           );
         },
+        tabBarActiveTintColor: '#76BA99',
+        tabBarInactiveTintColor: 'grey',
+        tabBarLabelStyle: { paddingBottom: 10, fontSize: 10 },
+        tabBarStyle: { padding: 10, height: 70 },
       })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'grey',
-        labelStyle: { paddingBottom: 10, fontSize: 10 },
-        style: { padding: 10, height: 70 },
-      }}
     >
       <Tab.Screen
         name={homeName}
-        component={HomeScreen}
+        component={HomeTabScreen}
       />
       <Tab.Screen
-        name={registerName}
-        component={RegisterScreen}
+        name={listName}
+        component={ListTabScreen}
+      />
+      <Tab.Screen
+        name={messagesName}
+        component={MessageTabScreen}
+      />
+      <Tab.Screen
+        name={profileName}
+        component={ProfileTabScreen}
       />
     </Tab.Navigator>
   );
-}
+};
 
 export default MainContainer;

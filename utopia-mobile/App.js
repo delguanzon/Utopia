@@ -7,7 +7,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { auth, db } from './firebaseConfig';
 import SplashStackScreen from './screens/SplashStackScreen';
-import HomeScreen from './screens/HomeStackScreen';
 import RegisterScreen from './screens/RegisterStackScreen';
 import MainContainer from './screens/MainContainer';
 
@@ -18,14 +17,14 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Splash"
           component={SplashStackScreen}
         />
         <Stack.Screen
           name="Register"
           component={RegisterScreen}
-        />
+        /> */}
         <Stack.Screen
           name="Main"
           component={MainContainer}
