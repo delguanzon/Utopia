@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import RecentCard from '../../components/RecentCard';
 import RequestCard from '../../components/RequestCard';
 
@@ -12,6 +12,9 @@ const HomeScreen = ({ navigation }) => {
   return (
     <ScrollView className="bg-white">
       <View style={styles.section}>
+        <Pressable className=" bg-white border mx-2 w-28 h-12 rounded-full justify-center items-center ">
+          <Text className="text-emerald-500 text-lg font-bold">Request</Text>
+        </Pressable>
         <Text style={styles.headerText}>Active Tasks</Text>
         <RequestCard
           name="Utopian"

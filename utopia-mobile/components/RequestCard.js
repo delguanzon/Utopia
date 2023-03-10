@@ -25,8 +25,8 @@ const RequestCard = ({
   // const LONGITUDE = -73.99033; // Korea Town, New York, NY 10001
   const LATITUDE_DELTA = 0.01;
   const LONGITUDE_DELTA = LATITUDE_DELTA * (width / height);
-  const imgUrl = '../assets/img/' + img;
-  console.log(imgUrl);
+  // const imgUrl = '../assets/img/' + img;
+  // console.log(imgUrl);
 
   return (
     <TouchableOpacity className="my-2 rounded-lg pb-3 bg-white m-2 shadow-sm shadow-black">

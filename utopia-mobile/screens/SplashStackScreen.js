@@ -57,6 +57,7 @@ const SplashScreen = ({ navigation }) => {
   const recaptchaVerifier = React.useRef(null);
   const [verificationId, setVerificationId] = React.useState();
   const [verificationCode, setVerificationCode] = React.useState();
+  const [verified, setVerified] = React.useState(false);
   const [messageSent, setMessageSent] = React.useState(false);
 
   const firebaseConfig = app ? app.options : undefined;
@@ -80,6 +81,19 @@ const SplashScreen = ({ navigation }) => {
       showMessage({
         text: 'Verification code has been sent to your phone.',
       });
+    } catch (err) {
+      showMessage({ text: `Error: ${err.message}`, color: 'red' });
+    }
+  };
+
+  const confirmCode = async () => {
+    try {
+      const credential = PhoneAuthProvider.credential(
+        verificationId,
+        verificationCode
+      );
+      await signInWithCredential(auth, credential);
+      showMessage({ text: 'Phone authentication successful 👍' });
     } catch (err) {
       showMessage({ text: `Error: ${err.message}`, color: 'red' });
     }
@@ -123,6 +137,7 @@ const SplashScreen = ({ navigation }) => {
                 : 'bg-white w-28 h-12 rounded-full justify-center items-center '
             }
             onPress={() => sendVerification()}
+            //onPress={() => navigation.navigate('Main')}
           >
             <Text className="text-emerald-500 text-lg font-bold">
               Send Code
@@ -134,7 +149,9 @@ const SplashScreen = ({ navigation }) => {
           <View className="border-2 border-white rounded-lg w-80 h-12 text-white justify-center items-center  flex-row my-7">
             {/* <Text className="text-white text-lg">{areaCode}</Text> */}
             <TextInput
-              className="text-white text-lg text-center"
+              className={
+                !verified ? 'text-white text-lg text-center' : 'invisible'
+              }
               keyboardType={'number-pad'}
               placeholder="Enter 6 Digit Code"
               maxLength={6}
@@ -145,7 +162,7 @@ const SplashScreen = ({ navigation }) => {
           </View>
           <Pressable
             className={
-              !invited
+              verified
                 ? 'invisible'
                 : 'bg-white w-28 h-12 rounded-full justify-center items-center '
             }
@@ -161,6 +178,16 @@ const SplashScreen = ({ navigation }) => {
                 showMessage({ text: `Error: ${err.message}`, color: 'red' });
               }
             }}
+          >
+            <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
+          </Pressable>
+          <Pressable
+            className={
+              !verified
+                ? 'invisible'
+                : 'bg-white w-28 h-12 rounded-full justify-center items-center '
+            }
+            onPress={() => navigation.navigate('Main')}
           >
             <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
           </Pressable>
