@@ -137,7 +137,7 @@ const SplashScreen = ({ navigation }) => {
                 : 'bg-white w-28 h-12 rounded-full justify-center items-center '
             }
             onPress={() => sendVerification()}
-            //onPress={() => navigation.navigate('Main')}
+            // onPress={() => navigation.navigate('Main')}
           >
             <Text className="text-emerald-500 text-lg font-bold">
               Send Code
@@ -181,7 +181,7 @@ const SplashScreen = ({ navigation }) => {
           >
             <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
           </Pressable>
-          <Pressable
+          {/* <Pressable
             className={
               !verified
                 ? 'invisible'
@@ -190,7 +190,7 @@ const SplashScreen = ({ navigation }) => {
             onPress={() => navigation.navigate('Main')}
           >
             <Text className="text-emerald-500 text-lg font-bold">Sign In</Text>
-          </Pressable>
+          </Pressable> */}
         </View>
       )}
 

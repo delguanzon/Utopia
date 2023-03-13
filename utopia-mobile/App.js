@@ -14,22 +14,23 @@ const Stack = createNativeStackNavigator();
 
 export default function App() {
   const [user] = useAuthState(auth);
+  console.log(user);
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen
-          name="Splash"
-          component={SplashStackScreen}
-        /> */}
-        {/*<Stack.Screen
-          name="Register"
-          component={RegisterScreen}
-        /> */}
-        <Stack.Screen
-          name="Main"
-          component={MainContainer}
-        />
-      </Stack.Navigator>
+      {user === null ? (
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Splash"
+            component={SplashStackScreen}
+          />
+          <Stack.Screen
+            name="Register"
+            component={RegisterScreen}
+          />
+        </Stack.Navigator>
+      ) : (
+        <MainContainer />
+      )}
     </NavigationContainer>
   );
 }

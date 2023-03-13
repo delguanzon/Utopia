@@ -1,7 +1,10 @@
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
+import { useSignOut } from 'react-firebase-hooks/auth';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import RecentCard from '../../components/RecentCard';
 import RequestCard from '../../components/RequestCard';
+import { auth } from '../../firebaseConfig';
 
 const HomeScreen = ({ navigation }) => {
   useEffect(() => {
@@ -9,10 +12,17 @@ const HomeScreen = ({ navigation }) => {
       tabBarShowLabel: false,
     });
   }, []);
+
+  const [signOut] = useSignOut(auth);
   return (
     <ScrollView className="bg-white">
       <View style={styles.section}>
-        <Pressable className=" bg-white border mx-2 w-28 h-12 rounded-full justify-center items-center ">
+        <Pressable
+          className=" bg-white border mx-2 w-28 h-12 rounded-full justify-center items-center "
+          onPress={async () => {
+            await signOut();
+          }}
+        >
           <Text className="text-emerald-500 text-lg font-bold">Request</Text>
         </Pressable>
         <Text style={styles.headerText}>Active Tasks</Text>

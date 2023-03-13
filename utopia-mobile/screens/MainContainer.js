@@ -21,23 +21,23 @@ const profileName = 'Profile';
 const Tab = createBottomTabNavigator();
 
 const MainContainer = ({ navigation }) => {
-  useFocusEffect(
-    React.useCallback(() => {
-      const onBackPress = () => {
-        return true;
-      };
-      BackHandler.addEventListener('hardwareBackPress', onBackPress);
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     const onBackPress = () => {
+  //       return true;
+  //     };
+  //     BackHandler.addEventListener('hardwareBackPress', onBackPress);
 
-      return () =>
-        BackHandler.removeEventListener('hardwareBackPress', onBackPress);
-    }, [])
-  );
-  React.useEffect(() => {
-    navigation.setOptions({
-      headerShown: false,
-      backBehavior: 'none',
-    });
-  }, []);
+  //     return () =>
+  //       BackHandler.removeEventListener('hardwareBackPress', onBackPress);
+  //   }, [])
+  // );
+  // React.useEffect(() => {
+  //   navigation.setOptions({
+  //     headerShown: false,
+  //     backBehavior: 'none',
+  //   });
+  // }, []);
   return (
     <Tab.Navigator
       initialRouteName={homeName}
